@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New checkup</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h3>Ввод данных проверки</h3>
+<form th:method="POST" th:action="@{/checkup-update}" th:object="${checkup}">
+
+    <label for="id">Id: </label>
+    <input readonly type="number" th:field="*{checkup_id}" id="id"/>
+
+    <br/>
+    <label for="employeeRef">Enter checker name: </label>
+    <input type="text" th:field="*{employeeRef}" id="employeeRef"/>
+
+    <br/>
+    <label for="item_type">Enter item_type: </label>
+    <input type="text" th:field="*{item_type}" id="item_type"/>
+
+    <br/>
+    <label for="quantity">Enter quantity: </label>
+    <input type="number" th:field="*{quantity}" id="quantity"/>
+
+    <br/>
+    <label for="invalid_quantity">Enter invalid_quantity: </label>
+    <input type="text" th:field="*{invalid_quantity}" id="invalid_quantity"/>
+
+    <br/>
+    <label for="consign_num">Enter pack number: </label>
+    <input type="text" th:field="*{consign_num}" id="consign_num"/>
+
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>

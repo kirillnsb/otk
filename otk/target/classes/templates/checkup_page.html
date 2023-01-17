@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkups</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div th:switch="${checkups}">
+    <h2 th:case="null">No users found!</h2>
+    <div th:case="*">
+        <h2>Checkups</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Ch_Id</th>
+                <th>Quantity</th>
+                <th>Invalid quantity</th>
+                <th>Consign</th>
+                <th>Item type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="checkup : ${checkups}">
+                <td th:text="${checkup.checkup_id}"></td>
+                <td th:text="${checkup.quantity}"></td>
+                <td th:text="${checkup.invalid_quantity}"></td>
+                <td th:text="${checkup.consign_num}"></td>
+                <td th:text="${checkup.item_type}"></td>
+                <td><a th:href="@{checkup-update/{id}(id=${checkup.checkup_id})}">Edit</a></td>
+                <td><a th:method="get" th:href="@{checkup-delete/{id}(id=${checkup.checkup_id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/new-checkup">New checkup</a></p>
+</div>
+</body>
+</html>
