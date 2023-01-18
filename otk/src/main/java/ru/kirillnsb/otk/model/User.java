@@ -16,7 +16,7 @@ public class User {
     String login;
     String password;
     String email;
-    
+
     @OneToMany(mappedBy = "employeeRef")
     private List<Checkup> checkupList;
 

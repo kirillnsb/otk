@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kirillnsb.otk.model.Checkup;
-import ru.kirillnsb.otk.model.User;
 import ru.kirillnsb.otk.service.CheckupService;
 import ru.kirillnsb.otk.service.UserService;
 
@@ -37,13 +36,13 @@ public class CheckupController {
 
     @GetMapping("/checkups")
     public String findAll(Model model){
-        List<Checkup> users = checkupService.findAll();
-        model.addAttribute("checkups", users);
+        List<Checkup> checkups = checkupService.findAll();
+        model.addAttribute("checkups", checkups);
         return "checkup_page";
     }
 
     @GetMapping("/new-checkup")
-    public String createUserForm(Checkup checkup){
+    public String createCheckupForm(Checkup checkup){
         return "new_checkup";
     }
 
@@ -60,14 +59,14 @@ public class CheckupController {
     }
 
     @GetMapping("/checkup-update/{id}")
-    public String updateUserForm(@PathVariable("id") Long id, Model model){
+    public String updateCheckupForm(@PathVariable("id") Long id, Model model){
         Checkup checkup = checkupService.findById(id);
         model.addAttribute("checkup", checkup);
         return "checkup_update";
     }
 
     @PostMapping("/checkup-update")
-    public String updateUser(Checkup checkup){
+    public String updateCheckup(Checkup checkup){
         checkupService.saveCheckup(checkup);
         return "redirect:/checkups";
     }

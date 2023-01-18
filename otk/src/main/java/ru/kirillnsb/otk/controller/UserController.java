@@ -40,11 +40,13 @@ public class UserController {
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model){
         System.out.println("Login req "+user);
+
         authedUser = userService.authUser(user.getLogin(), user.getPassword());
         if (authedUser == null){
             return "error_page";
         }else {
-            model.addAttribute("userLogin", authedUser.getLogin());
+            model.addAttribute("userLogin", authedUser.getLogin() + " (ID:" + authedUser.getEmployee_id()+')');
+            model.addAttribute("userCheckups", authedUser.getCheckupList());
             return "user_page";
         }
     }
